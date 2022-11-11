@@ -131,7 +131,15 @@ You can update the path/s that are search using the config interface opposite.
 
 $HOME/dev
 $HOME/dev $HOME/other
-$HOME/dev $HOME/other ~/foo</string>
+$HOME/dev $HOME/other ~/foo
+
+
+#### Latest Release
+
+
+
+To view other releases visit:
+https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 	<key>uidata</key>
 	<dict>
 		<key>2CB6E78B-4591-409A-9973-E16B31EEB3F2</key>
@@ -188,7 +196,7 @@ $HOME/dev $HOME/other ~/foo</string>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
-	<string>0.1.0</string>
+	<string>1.0.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
