@@ -8,7 +8,7 @@
     [
       "@semantic-release/exec",
       {
-        "verifyReleaseCmd": "./bin/build_release ${nextRelease.version}"
+        "prepareCmd": "./bin/build_release ${nextRelease.version} \"${nextRelease.notes}\""
       }
     ],
     [
@@ -17,7 +17,7 @@
         "assets": [
           {
             "path": "releases/*.alfredworkflow",
-            "label": "Open in VScode Workflow"
+            "label": "Alfred 5 VSCode Workflow (${nextRelease.version})"
           }
         ]
       }
