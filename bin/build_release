@@ -1,0 +1,51 @@
+#!/usr/bin/env sh
+
+set -e
+VERSION=$1
+NOTES=$2
+
+echo "updating VERSION to $VERSION in info.plist... ✅"
+/usr/libexec/PlistBuddy -c "Set :version $VERSION" info.plist
+
+echo "adding release notes to info.plist... ✅"
+readonly readme=$(cat <<-END
+# Open in VSCode
+
+Searches for .git repos in the path of your choice and allows you open them in VSCode. You can also use the CMD modifier to open the repo folder in your Terminal.
+
+You can update the path/s that are search using the config interface opposite.
+
+### Examples
+
+\$HOME/dev
+\$HOME/dev \$HOME/other
+\$HOME/dev \$HOME/other ~/foo
+
+
+#### Latest Release\n\n
+END
+)
+readonly finishup=$(cat <<-END
+
+
+To view other releases visit:
+https://github.com/whomwah/alfred-vscode-workflow/releases
+END
+)
+/usr/libexec/PlistBuddy -c "Set :readme  $readme$NOTES$finishup" info.plist
+
+echo "bundle and minify workflow... ✅"
+deno bundle mod.ts | esbuild --minify-whitespace --minify-identifiers > mod.min.js
+
+echo "confirm releases dir... ✅"
+mkdir -p releases
+
+echo "build releases/alfred-vscode-workflow.$VERSION.zip... ✅"
+zip -r "releases/alfred-vscode-workflow.$VERSION.zip" icon.png mod.min.js info.plist
+mv "releases/alfred-vscode-workflow.$VERSION.zip" "releases/vscode.$VERSION.alfredworkflow"
+
+echo "cleanup... ✅"
+rm mod.min.js
+
+echo
+echo "New release created! [$VERSION] 🥳"

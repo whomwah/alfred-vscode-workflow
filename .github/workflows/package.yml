@@ -1,0 +1,39 @@
+name: Package
+
+on:
+  workflow_run:
+    workflows: [Workflow Tests]
+    types:
+      - completed
+
+jobs:
+  release:
+    if: ${{ github.ref_name == 'main' && github.event.workflow_run.conclusion == 'success' }}
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GH_AUTH_TOKEN }}
+
+      - uses: denoland/setup-deno@v1.1.1
+        with:
+          deno-version: v1.x # Run with latest stable Deno.
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Setup package.json
+        run: echo '{"name":"alfred-vscode-workflow", "devDependencies":{"esbuild":"^0.15.9","@semantic-release/git":"^10.0.1","@semantic-release/exec":"^6.0.3","semantic-release":"^19.0.5"}}' > package.json
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Release
+        run: npx semantic-release
+        env:
+          GH_TOKEN: ${{ secrets.GH_AUTH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

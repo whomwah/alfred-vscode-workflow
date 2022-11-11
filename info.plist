@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>bundleid</key>
+	<string>com.whomwah.vscode</string>
+	<key>category</key>
+	<string>Productivity</string>
+	<key>connections</key>
+	<dict>
+		<key>D826D6D1-5C1A-45D5-8933-7B0BA272293A</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2CB6E78B-4591-409A-9973-E16B31EEB3F2</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</string>
+				<key>modifiers</key>
+				<integer>1048576</integer>
+				<key>modifiersubtext</key>
+				<string>Open in Terminal</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+	</dict>
+	<key>createdby</key>
+	<string>Duncan Robertson</string>
+	<key>description</key>
+	<string>Open result in VSCode or Terminal</string>
+	<key>disabled</key>
+	<false/>
+	<key>name</key>
+	<string>VSCode</string>
+	<key>objects</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>openwith</key>
+				<string>/Applications/Visual Studio Code.app</string>
+				<key>sourcefile</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.openfile</string>
+			<key>uid</key>
+			<string>2CB6E78B-4591-409A-9973-E16B31EEB3F2</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>alfredfiltersresults</key>
+				<true/>
+				<key>alfredfiltersresultsmatchmode</key>
+				<integer>2</integer>
+				<key>argumenttreatemptyqueryasnil</key>
+				<false/>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>1</integer>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>keyword</key>
+				<string>vs</string>
+				<key>queuedelaycustom</key>
+				<integer>3</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
+				<key>runningsubtext</key>
+				<string>Please Wait...</string>
+				<key>script</key>
+				<string>$(which deno) run ${PROJECT_PATH}mod.ts $argv[1] $(findd -q .git $(eval "echo $findDdSearchPath"))</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Search or type a command</string>
+				<key>title</key>
+				<string>vs...</string>
+				<key>type</key>
+				<integer>5</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>D826D6D1-5C1A-45D5-8933-7B0BA272293A</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>path</key>
+				<string>{query}</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.browseinterminal</string>
+			<key>uid</key>
+			<string>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+	</array>
+	<key>readme</key>
+	<string># Open in VSCode
+
+Searches for .git repos in the path of your choice and allows you open them in VSCode. You can also use the CMD modifier to open the repo folder in your Terminal.
+
+You can update the path/s that are search using the config interface opposite.
+
+### Examples
+
+$HOME/dev
+$HOME/dev $HOME/other
+$HOME/dev $HOME/other ~/foo</string>
+	<key>uidata</key>
+	<dict>
+		<key>2CB6E78B-4591-409A-9973-E16B31EEB3F2</key>
+		<dict>
+			<key>xpos</key>
+			<real>610</real>
+			<key>ypos</key>
+			<real>85</real>
+		</dict>
+		<key>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</key>
+		<dict>
+			<key>xpos</key>
+			<real>610</real>
+			<key>ypos</key>
+			<real>265</real>
+		</dict>
+		<key>D826D6D1-5C1A-45D5-8933-7B0BA272293A</key>
+		<dict>
+			<key>xpos</key>
+			<real>125</real>
+			<key>ypos</key>
+			<real>225</real>
+		</dict>
+	</dict>
+	<key>userconfigurationconfig</key>
+	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>$HOME</string>
+				<key>placeholder</key>
+				<string>default: $HOME</string>
+				<key>required</key>
+				<true/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>You can add your own search path/s e.g $HOME/dev $HOME/other_dev</string>
+			<key>label</key>
+			<string>Search path/s</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>findDdSearchPath</string>
+		</dict>
+	</array>
+	<key>variables</key>
+	<dict>
+		<key>PROJECT_PATH</key>
+		<string>/Users/duncan/_dev/deno/alfred-vscode-workflow/</string>
+		<key>TEMP</key>
+		<string>mod.min.js</string>
+	</dict>
+	<key>version</key>
+	<string>0.1.0</string>
+	<key>webaddress</key>
+	<string></string>
+</dict>
+</plist>
