@@ -136,6 +136,15 @@ $HOME/dev $HOME/other ~/foo
 
 #### Latest Release
 
+# [1.1.0](https://github.com/whomwah/alfred-vscode-workflow/compare/v1.0.0...v1.1.0) (2022-11-12)
+
+
+### Features
+
+* switch to use fuzzy matching. Much nicer. ([364fe62](https://github.com/whomwah/alfred-vscode-workflow/commit/364fe62dd692af58378c12efa002434527c8c091))
+
+
+
 
 
 To view other releases visit:
@@ -196,7 +205,7 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
-	<string>1.0.0</string>
+	<string>1.1.0</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
