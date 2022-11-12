@@ -1,15 +1,28 @@
 # Open in VSCode workflow
 
-Searches for `.git` repos in the path of your choice and allows you to either
-open them in VSCode or in the terminal. It's really fast though.
+Searches for folder with `.git` repos in the path of your choice and allows you
+to either open them in VSCode or in the terminal. It's really fast though. It
+uses [Deno](https://deno.land/). It's written in
+[TypeScript](https://www.typescriptlang.org/).
 
-### Prerequisites
+### Install
 
-- [VSCode](https://code.visualstudio.com/) (obviously!)
+The project and workflow requires the [Deno](https://deno.land/) binary to be
+installed. This can be done simply from the [Deno](https://deno.land/) website
+above.
+
+> [Deno](https://deno.land/) is a runtime for JavaScript.
+> [Deno](https://deno.land/) was co-created by Ryan Dahl, who also created
+> Node.js.
+
+We also need `findd`:
+
 - [`findd`](https://github.com/whomwah/findd) - A tiny little utility that does
   the magic of finding all the repos really really fast.
 
-You can install `VSCode` by downloading it from above. The easiest way to
-install `findd` is via `homebrew`:
+The easiest way to install `findd` is via `homebrew` (the same with `deno`):
 
-`brew install whomwah/tap/findd`
+```
+$ brew install deno
+$ brew install whomwah/tap/findd
+```
