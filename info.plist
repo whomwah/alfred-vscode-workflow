@@ -200,8 +200,6 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 	<key>variables</key>
 	<dict>
 		<key>PROJECT_PATH</key>
-		<string>/Users/duncan/_dev/deno/alfred-vscode-workflow/</string>
-		<key>TEMP</key>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
