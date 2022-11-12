@@ -136,12 +136,12 @@ $HOME/dev $HOME/other ~/foo
 
 #### Latest Release
 
-## [1.1.1](https://github.com/whomwah/alfred-vscode-workflow/compare/v1.1.0...v1.1.1) (2022-11-12)
+## [1.1.2](https://github.com/whomwah/alfred-vscode-workflow/compare/v1.1.1...v1.1.2) (2022-11-12)
 
 
 ### Bug Fixes
 
-* oops use correct path to code ([fd3e299](https://github.com/whomwah/alfred-vscode-workflow/commit/fd3e2996dd076fa2846014be81d304417288eb21))
+* fix script filter node in Alfred to use correct file ([97cf57b](https://github.com/whomwah/alfred-vscode-workflow/commit/97cf57b2d9259854a9e123a5896d9231f8e4b3ec))
 
 
 
@@ -203,7 +203,7 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.1</string>
+	<string>1.1.2</string>
 	<key>webaddress</key>
 	<string></string>
 </dict>
