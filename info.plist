@@ -61,7 +61,7 @@
 			<key>config</key>
 			<dict>
 				<key>alfredfiltersresults</key>
-				<true/>
+				<false/>
 				<key>alfredfiltersresultsmatchmode</key>
 				<integer>2</integer>
 				<key>argumenttreatemptyqueryasnil</key>
@@ -85,7 +85,7 @@
 				<key>runningsubtext</key>
 				<string>Please Wait...</string>
 				<key>script</key>
-				<string>$(which deno) run ${PROJECT_PATH}mod.ts $argv[1] $(findd -q .git $(eval "echo $findDdSearchPath"))</string>
+				<string>$(which deno) run ${INIT_FILE} $argv[1] "###" $(findd -q .git $(eval "echo $findDdSearchPath"))</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -199,7 +199,7 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 	</array>
 	<key>variables</key>
 	<dict>
-		<key>PROJECT_PATH</key>
+		<key>INIT_FILE</key>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
