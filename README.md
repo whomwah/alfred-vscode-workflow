@@ -1,6 +1,6 @@
 # Open in VSCode workflow
 
-Searches for a local Git repo based on the path/s of your choice and allows you
+Searches for local Git repos based on the path/s of your choice and allows you
 to either open them in VSCode or in your Terminal. It's really fast. It uses
 [Deno](https://deno.land/). It's written in
 [TypeScript](https://www.typescriptlang.org/).
