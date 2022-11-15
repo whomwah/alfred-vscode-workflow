@@ -1,9 +1,8 @@
 # Open in VSCode workflow
 
-**[15:11:22] NOTE: This workflow looks like it has trouble when you have lots of
-git repos on your machine ~200+. I don't have that many so never see the issue
-I'm just figuring out if this can be solved easily using a different lookup and
-store method.**
+**[15:11:22] UPDATE: It looks like there may be a problem in some scenarios to
+do with where you store your repos. I'm still trying to bottom out the issue but
+be aware. Note I do not have these issue myself**
 
 Searches for local Git repos based on the path/s of your choice and allows you
 to either open them in VSCode or in your Terminal. It uses
