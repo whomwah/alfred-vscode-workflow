@@ -1,7 +1,12 @@
 # Open in VSCode workflow
 
+**[15:11:22] NOTE: This workflow looks like it has trouble when you have lots of
+git repos on your machine ~200+. I don't have that many so never see the issue
+I'm just figuring out if this can be solved easily using a different lookup and
+store method.**
+
 Searches for local Git repos based on the path/s of your choice and allows you
-to either open them in VSCode or in your Terminal. It's really fast. It uses
+to either open them in VSCode or in your Terminal. It uses
 [Deno](https://deno.land/). It's written in
 [TypeScript](https://www.typescriptlang.org/).
 
