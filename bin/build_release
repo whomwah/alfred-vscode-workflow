@@ -13,7 +13,7 @@ readonly readme=$(cat <<-END
 
 Searches for .git repos in the path of your choice and allows you open them in VSCode. You can also use the CMD modifier to open the repo folder in your Terminal.
 
-You can update the path/s that are search using the config interface opposite.
+You can update the path/s that are searched using the config interface opposite. If you have a large number of repos I'm afraid you may see performance issues.
 
 ### Examples
 
