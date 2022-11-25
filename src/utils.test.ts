@@ -1,4 +1,4 @@
-import { assert } from "https://deno.land/std@0.154.0/testing/asserts.ts";
+import { assert } from "https://deno.land/std@0.166.0/testing/asserts.ts";
 import { fuzzyMatch } from "./utils.ts";
 
 Deno.test("#fuzzyMatch", async (t) => {

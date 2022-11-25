@@ -1,12 +1,7 @@
 # Open in VSCode workflow
 
-**[15:11:22] UPDATE: It looks like there may be a problem in some scenarios to
-do with where you store your repos. I'm still trying to bottom out the issue but
-be aware. Note I do not have these issue myself**
-
-Searches for local Git repos based on the path/s of your choice and allows you
-to either open them in VSCode or in your Terminal. It uses
-[Deno](https://deno.land/). It's written in
+Searches for local Git repos based on the path of your choice and allows you to
+open them in VSCode. It uses [Deno](https://deno.land/). It's written in
 [TypeScript](https://www.typescriptlang.org/).
 
 ![VSCode Alfred 5 Workflow](./assets/vscode.gif)
@@ -33,13 +28,40 @@ $ brew install deno
 $ brew install whomwah/tap/findd
 ```
 
+Once installed you can
+[download the latest version](https://github.com/whomwah/alfred-vscode-workflow/releases/latest)
+and double click the `.workflow` file to open and install or update.
+
+## Usage
+
+Initially you will need to choose a folder to scan for projects in the workflow
+`config`. Don't choose `~` for example as scanning your home directory may cause
+the scanning script to be just too slow to return anything. It's much better to
+choose for example `~/my-projects`.
+
+By default you access the workflow via the `vs` command.
+
+There is only one top level command. Other than that you just start typing a
+`project` name you are interested in. Once you start seeing results pressing
+return will attempt to open that project in VSCode.
+
+```bash
+# Settings
+
+vs > ...
+
+# Anything else
+
+vs ...
+```
+
 ## Development
 
 You will first need to install `deno` as mentioned earlier in this README.
 
 ### Tests
 
-`deno test`
+`deno task test`
 
 ### Formatting
 
