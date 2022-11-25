@@ -347,12 +347,12 @@ You can update the path that is searched using the config interface opposite. Th
 
 #### Latest Release
 
-## [1.1.2](https://github.com/whomwah/alfred-vscode-workflow/compare/v1.1.1...v1.1.2) (2022-11-12)
+# [1.2.0](https://github.com/whomwah/alfred-vscode-workflow/compare/v1.1.2...v1.2.0) (2022-11-25)
 
 
-### Bug Fixes
+### Features
 
-* fix script filter node in Alfred to use correct file ([97cf57b](https://github.com/whomwah/alfred-vscode-workflow/commit/97cf57b2d9259854a9e123a5896d9231f8e4b3ec))
+* Start using a local DB to store projects found ([8fe9f8e](https://github.com/whomwah/alfred-vscode-workflow/commit/8fe9f8e8866daebf0facb118354f916410632555))
 
 
 
@@ -541,7 +541,7 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 		<string>mod.min.js</string>
 	</dict>
 	<key>version</key>
-	<string>1.1.2</string>
+	<string>1.2.0</string>
 	<key>webaddress</key>
 	<string>https://github.com/whomwah/alfred-vscode-workflow</string>
 </dict>
