@@ -8,7 +8,70 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
-		<key>D826D6D1-5C1A-45D5-8933-7B0BA272293A</key>
+		<key>099D293F-1BD0-4C35-8A3E-AED416878339</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3BB3665-952E-4C2B-B907-3F7FF72EF689</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>14994684-0384-4C9F-96BA-39884B3A540B</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>55462803-A964-446B-BBED-EA1383C22FA4</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>55462803-A964-446B-BBED-EA1383C22FA4</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>099D293F-1BD0-4C35-8A3E-AED416878339</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>D506270D-11C9-4E47-B23F-BF7184B034EF</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>799FD36F-995D-4AD9-ACD0-F03B49A98074</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>sourceoutputuid</key>
+				<string>858858E6-77AA-4D32-B0FB-5933CB8AFAEA</string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+			<dict>
+				<key>destinationuid</key>
+				<string>C3BB3665-952E-4C2B-B907-3F7FF72EF689</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>799FD36F-995D-4AD9-ACD0-F03B49A98074</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
@@ -20,13 +83,16 @@
 				<key>vitoclose</key>
 				<false/>
 			</dict>
+		</array>
+		<key>E2E79161-92E0-48F5-A68B-E8F9B0F29A72</key>
+		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</string>
+				<string>14994684-0384-4C9F-96BA-39884B3A540B</string>
 				<key>modifiers</key>
-				<integer>1048576</integer>
+				<integer>0</integer>
 				<key>modifiersubtext</key>
-				<string>Open in Terminal</string>
+				<string></string>
 				<key>vitoclose</key>
 				<false/>
 			</dict>
@@ -42,6 +108,85 @@
 	<string>VSCode</string>
 	<key>objects</key>
 	<array>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string># Setting github variables
+readonly gh_repo='whomwah/alfred-vscode-workflow'
+readonly gh_url="https://api.github.com/repos/${gh_repo}/releases/latest"
+
+# Fetch latest version
+function fetch_remote_version {
+  echo $1 | grep 'tag_name' | head -1 | sed -E 's/.*tag_name": "v?(.*)".*/\1/'
+}
+
+# Fetch download url
+function fetch_download_url {
+  echo $1 | grep 'browser_download_url.*\.alfredworkflow"' | head -1 | sed -E 's/.*browser_download_url": "(.*)".*/\1/'
+}
+
+# Download and install workflow
+function download_and_install {
+  readonly tmpfile="$(mktemp).alfredworkflow"
+
+  echo "Downloading and installing version ${2}…"
+
+  curl --silent --location --output "${tmpfile}" "${1}"
+  open "${tmpfile}"
+  exit 0;
+}
+
+# Setting version and download url for later use
+readonly response=$(curl --silent "${gh_url}")
+readonly version="$(fetch_remote_version $response)"
+readonly download_url="$(fetch_download_url $response)"
+
+# Compare current version to installed version and download if required
+[ $(printf "%d%03d%03d%03d\n" $(echo ${alfred_workflow_version} | tr '.' ' ')) -lt $(printf "%d%03d%03d%03d\n" $(echo ${version} | tr '.' ' ')) ] &amp;&amp; download_and_install ${download_url} ${version}
+
+echo "You are running the latest version (${alfred_workflow_version})"</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>099D293F-1BD0-4C35-8A3E-AED416878339</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<true/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>$(which deno) run --allow-net --allow-run --allow-env --allow-write --allow-read ${INIT_FILE} action $argv[1]</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>5</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>14994684-0384-4C9F-96BA-39884B3A540B</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
@@ -83,9 +228,10 @@
 				<key>queuemode</key>
 				<integer>1</integer>
 				<key>runningsubtext</key>
-				<string>Please Wait...</string>
+				<string>Initialising...please wait whilst we prefetch data</string>
 				<key>script</key>
-				<string>$(which deno) run ${INIT_FILE} $argv[1] "###" $(findd -q .git $(eval "echo $findDdSearchPath"))</string>
+				<string>$(which deno) run --unstable --allow-run --allow-env --allow-write --allow-read --allow-net ${INIT_FILE} filter $argv[1]
+</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -102,20 +248,91 @@
 			<key>type</key>
 			<string>alfred.workflow.input.scriptfilter</string>
 			<key>uid</key>
-			<string>D826D6D1-5C1A-45D5-8933-7B0BA272293A</string>
+			<string>E2E79161-92E0-48F5-A68B-E8F9B0F29A72</string>
 			<key>version</key>
 			<integer>3</integer>
 		</dict>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>path</key>
-				<string>{query}</string>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>###project###</string>
+				<key>replacestring</key>
+				<string></string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.browseinterminal</string>
+			<string>alfred.workflow.utility.replace</string>
 			<key>uid</key>
-			<string>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</string>
+			<string>799FD36F-995D-4AD9-ACD0-F03B49A98074</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>conditions</key>
+				<array>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^###update_available###.*</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>D506270D-11C9-4E47-B23F-BF7184B034EF</string>
+					</dict>
+					<dict>
+						<key>inputstring</key>
+						<string></string>
+						<key>matchcasesensitive</key>
+						<true/>
+						<key>matchmode</key>
+						<integer>4</integer>
+						<key>matchstring</key>
+						<string>^###project###.*</string>
+						<key>outputlabel</key>
+						<string></string>
+						<key>uid</key>
+						<string>858858E6-77AA-4D32-B0FB-5933CB8AFAEA</string>
+					</dict>
+				</array>
+				<key>elselabel</key>
+				<string>else</string>
+				<key>hideelse</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.conditional</string>
+			<key>uid</key>
+			<string>55462803-A964-446B-BBED-EA1383C22FA4</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
+				<true/>
+				<key>removeextension</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>VSCode</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.notification</string>
+			<key>uid</key>
+			<string>C3BB3665-952E-4C2B-B907-3F7FF72EF689</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -123,15 +340,9 @@
 	<key>readme</key>
 	<string># Open in VSCode
 
-Searches for .git repos in the path of your choice and allows you open them in VSCode. You can also use the CMD modifier to open the repo folder in your Terminal.
+Searches for .git repos in the path of your choice and allows you open them in VSCode.
 
-You can update the path/s that are search using the config interface opposite.
-
-### Examples
-
-$HOME/dev
-$HOME/dev $HOME/other
-$HOME/dev $HOME/other ~/foo
+You can update the path that is searched using the config interface opposite. There are other settings too that may be useful. If you have a large number of repos you may see a slight delay on the first search whilst it caches everything.
 
 
 #### Latest Release
@@ -151,26 +362,66 @@ To view other releases visit:
 https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 	<key>uidata</key>
 	<dict>
+		<key>099D293F-1BD0-4C35-8A3E-AED416878339</key>
+		<dict>
+			<key>note</key>
+			<string>Download new version of workflow if available</string>
+			<key>xpos</key>
+			<real>720</real>
+			<key>ypos</key>
+			<real>30</real>
+		</dict>
+		<key>14994684-0384-4C9F-96BA-39884B3A540B</key>
+		<dict>
+			<key>note</key>
+			<string>Handles an actions that are triggered by the user</string>
+			<key>xpos</key>
+			<real>230</real>
+			<key>ypos</key>
+			<real>45</real>
+		</dict>
 		<key>2CB6E78B-4591-409A-9973-E16B31EEB3F2</key>
 		<dict>
 			<key>xpos</key>
-			<real>610</real>
+			<real>660</real>
 			<key>ypos</key>
-			<real>85</real>
+			<real>190</real>
 		</dict>
-		<key>8D8A6F44-7B8E-4B42-94A9-46FBFF4EF836</key>
+		<key>55462803-A964-446B-BBED-EA1383C22FA4</key>
 		<dict>
+			<key>note</key>
+			<string>Decide whether we have info and whether we are triggering an update or notifiying the user</string>
 			<key>xpos</key>
-			<real>610</real>
+			<real>290</real>
 			<key>ypos</key>
-			<real>265</real>
+			<real>390</real>
 		</dict>
-		<key>D826D6D1-5C1A-45D5-8933-7B0BA272293A</key>
+		<key>799FD36F-995D-4AD9-ACD0-F03B49A98074</key>
 		<dict>
+			<key>note</key>
+			<string>Replace ###project### with nothing so we're left with the path to the project</string>
 			<key>xpos</key>
-			<real>125</real>
+			<real>580</real>
 			<key>ypos</key>
-			<real>225</real>
+			<real>355</real>
+		</dict>
+		<key>C3BB3665-952E-4C2B-B907-3F7FF72EF689</key>
+		<dict>
+			<key>note</key>
+			<string>Notifiy user</string>
+			<key>xpos</key>
+			<real>750</real>
+			<key>ypos</key>
+			<real>530</real>
+		</dict>
+		<key>E2E79161-92E0-48F5-A68B-E8F9B0F29A72</key>
+		<dict>
+			<key>note</key>
+			<string>Main script that takes input and returns the items you see</string>
+			<key>xpos</key>
+			<real>30</real>
+			<key>ypos</key>
+			<real>190</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
@@ -179,22 +430,109 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string>$HOME</string>
-				<key>placeholder</key>
-				<string>default: $HOME</string>
-				<key>required</key>
 				<true/>
-				<key>trim</key>
+				<key>required</key>
+				<false/>
+				<key>text</key>
+				<string></string>
+			</dict>
+			<key>description</key>
+			<string>Show when updates are available</string>
+			<key>label</key>
+			<string>Check for updates</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>checkForUpdates</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>weekly</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>Daily</string>
+						<string>daily</string>
+					</array>
+					<array>
+						<string>Weekly</string>
+						<string>weekly</string>
+					</array>
+					<array>
+						<string>Monthly</string>
+						<string>monthly</string>
+					</array>
+					<array>
+						<string>Yearly</string>
+						<string>yearly</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>How often should we check for updates</string>
+			<key>label</key>
+			<string>Update frequency</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>updateFrequency</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>filtermode</key>
+				<integer>1</integer>
+				<key>placeholder</key>
+				<string>/Users/foo/dev</string>
+				<key>required</key>
 				<true/>
 			</dict>
 			<key>description</key>
-			<string>You can add your own search path/s e.g $HOME/dev $HOME/other_dev</string>
+			<string>This is the path that will be searched automatically for .git repos. Adding a path that contains massive folder trees may take a while to search initially.</string>
 			<key>label</key>
-			<string>Search path/s</string>
+			<string>Project search path</string>
 			<key>type</key>
-			<string>textfield</string>
+			<string>filepicker</string>
 			<key>variable</key>
-			<string>findDdSearchPath</string>
+			<string>autoProjectSearchPath</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>monthly</string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>Daily</string>
+						<string>daily</string>
+					</array>
+					<array>
+						<string>Weekly</string>
+						<string>weekly</string>
+					</array>
+					<array>
+						<string>Monthly</string>
+						<string>monthly</string>
+					</array>
+					<array>
+						<string>Yearly</string>
+						<string>yearly</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>How often should we refresh the project cache</string>
+			<key>label</key>
+			<string>Project Cache Update frequency</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>cacheCheckFrequency</string>
 		</dict>
 	</array>
 	<key>variables</key>
@@ -205,6 +543,6 @@ https://github.com/whomwah/alfred-vscode-workflow/releases</string>
 	<key>version</key>
 	<string>1.1.2</string>
 	<key>webaddress</key>
-	<string></string>
+	<string>https://github.com/whomwah/alfred-vscode-workflow</string>
 </dict>
 </plist>

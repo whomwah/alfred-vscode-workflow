@@ -11,15 +11,9 @@ echo "adding release notes to info.plist... ✅"
 readonly readme=$(cat <<-END
 # Open in VSCode
 
-Searches for .git repos in the path of your choice and allows you open them in VSCode. You can also use the CMD modifier to open the repo folder in your Terminal.
+Searches for .git repos in the path of your choice and allows you open them in VSCode.
 
-You can update the path/s that are search using the config interface opposite.
-
-### Examples
-
-\$HOME/dev
-\$HOME/dev \$HOME/other
-\$HOME/dev \$HOME/other ~/foo
+You can update the path that is searched using the config interface opposite. There are other settings too that may be useful. If you have a large number of repos you may see a slight delay on the first search whilst it caches everything.
 
 
 #### Latest Release\n\n
@@ -41,7 +35,7 @@ echo "confirm releases dir... ✅"
 mkdir -p releases
 
 echo "build releases/alfred-vscode-workflow.$VERSION.zip... ✅"
-zip -r "releases/alfred-vscode-workflow.$VERSION.zip" icon.png mod.min.js info.plist
+zip -r "releases/alfred-vscode-workflow.$VERSION.zip" icon.png icons mod.min.js info.plist
 mv "releases/alfred-vscode-workflow.$VERSION.zip" "releases/vscode.$VERSION.alfredworkflow"
 
 echo "cleanup... ✅"
