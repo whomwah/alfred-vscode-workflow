@@ -1,5 +1,11 @@
 # Open in VSCode workflow
 
+![](https://github.com/whomwah/alfred-vscode-workflow/actions/workflows/tests.yml/badge.svg)
+[![semantic-release: deno](https://img.shields.io/badge/semantic--release-deno-blue?logo=deno)](https://github.com/semantic-release/semantic-release)
+[![release](https://img.shields.io/github/v/release/whomwah/alfred-vscode-workflow?&sort=semver)](https://github.com/whomwah/alfred-vscode-workflow/releases/latest)
+
+alfred-vscode-workflow
+
 Searches for local Git repos based on the path of your choice and allows you to
 open them in VSCode. It uses [Deno](https://deno.land/). It's written in
 [TypeScript](https://www.typescriptlang.org/).
